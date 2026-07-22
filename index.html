@@ -213,7 +213,7 @@
         <p class="subheading">Полная стратегия заработка на&nbsp;новом ИИ&nbsp;продукте с&nbsp;самыми выгодными условиями на&nbsp;рынке для&nbsp;клиентов и&nbsp;партнеров.</p>
 
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/N260pAGlg40?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&fs=1" allowfullscreen="" loading="lazy"></iframe>
+            <iframe id="videoPlayer" src="https://www.youtube.com/embed/N260pAGlg40?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&fs=1" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
         <div class="cta-section">
@@ -226,5 +226,50 @@
             <p class="support-text">Помогу зарегистрироваться за&nbsp;1&nbsp;минуту, отвечу на&nbsp;все вопросы и&nbsp;добавлю в&nbsp;чат команды.</p>
         </div>
     </div>
+
+    <script>
+        // Автоматический полноэкран при повороте телефона
+        function handleOrientationChange() {
+            const videoContainer = document.querySelector('.video-container');
+            const iframe = document.getElementById('videoPlayer');
+            
+            if (window.innerHeight < window.innerWidth) {
+                // Горизонтальная ориентация
+                videoContainer.style.position = 'fixed';
+                videoContainer.style.top = '0';
+                videoContainer.style.left = '0';
+                videoContainer.style.width = '100vw';
+                videoContainer.style.height = '100vh';
+                videoContainer.style.zIndex = '9999';
+                videoContainer.style.padding = '0';
+                videoContainer.style.margin = '0';
+                videoContainer.style.paddingBottom = '0';
+                videoContainer.style.borderRadius = '0';
+                iframe.style.borderRadius = '0';
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Вертикальная ориентация
+                videoContainer.style.position = 'relative';
+                videoContainer.style.top = 'auto';
+                videoContainer.style.left = 'auto';
+                videoContainer.style.width = '100%';
+                videoContainer.style.height = 'auto';
+                videoContainer.style.zIndex = 'auto';
+                videoContainer.style.padding = '0';
+                videoContainer.style.margin = '0';
+                videoContainer.style.paddingBottom = '56.25%';
+                videoContainer.style.borderRadius = '12px';
+                iframe.style.borderRadius = '12px';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Слушаем изменение ориентации
+        window.addEventListener('orientationchange', handleOrientationChange);
+        window.addEventListener('resize', handleOrientationChange);
+        
+        // Проверяем ориентацию при загрузке
+        window.addEventListener('load', handleOrientationChange);
+    </script>
 </body>
 </html>
